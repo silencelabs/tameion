@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.139109302204-44d3svbd3s41qbvvfhl6m3h8mm37tqq8</string>
+			</array>
+		</dict>
+	</array>
+	<key>CannyBoardToken</key>
+	<string>3eed3344-1313-82f3-3e4e-ce003ef90905</string>
+	<key>CannySSOUrl</key>
+	<string>https://cannysso-ml2d2t3e6a-uc.a.run.app/cannysso</string>
+	<key>GIDClientID</key>
+	<string>139109302204-44d3svbd3s41qbvvfhl6m3h8mm37tqq8.apps.googleusercontent.com
+</string>
+	<key>OneSignalAppID</key>
+	<string>10b46cc9-8ad1-4a26-9cdd-578952e9514e</string>
+	<key>OneSignalAPIKey</key>
+	<string>os_v2_org_bs62by654zctbgthrgn45vhmemt4bxwjwage6omdk3lcc5fqf4ic7iciobcvbqpw5xubo2wxpx27h3uumff26nzob7zqna35fpjzcna</string>
+	<key>ResendAPIKey</key>
+	<string>re_LY1ToLTJ_mJ4xQvDsR1myAUEBVJjGsQTm</string>
+	<key>RevenueCatAPIKey</key>
+	<string>test_TXomijzWAMCNCVOCkAHVmFcPwDN</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>color.launch-screen-bg</string>
+		<key>UIImageName</key>
+		<string>logo</string>
+	</dict>
+</dict>
+</plist>

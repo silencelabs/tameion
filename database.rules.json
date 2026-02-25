@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth.uid === $uid",
+        ".write": "auth.uid === $uid",
+        ".validate": "newData.hasChildren(['name', 'email'])"
+      }
+    },
+    "publicData": {
+      ".read": true,
+      ".write": false
+    }
+  }
+}

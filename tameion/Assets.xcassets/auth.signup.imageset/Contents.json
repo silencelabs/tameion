@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "The-7-Best-Signup-Platforms_Feature.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "The-7-Best-Signup-Platforms_Feature 1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "The-7-Best-Signup-Platforms_Feature 2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

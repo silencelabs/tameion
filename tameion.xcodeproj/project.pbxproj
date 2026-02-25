@@ -1,0 +1,1067 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA4244C22F1271F4004E470A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FA4244C12F1271F4004E470A /* FirebaseFirestore */; };
+		FA4244C62F127230004E470A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FA4244C52F127230004E470A /* FirebaseAuth */; };
+		FA4244C82F127230004E470A /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FA4244C72F127230004E470A /* FirebaseCore */; };
+		FA4244CA2F127230004E470A /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = FA4244C92F127230004E470A /* FirebaseCrashlytics */; };
+		FA4245042F156D19004E470A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FA4245032F156D19004E470A /* GoogleSignIn */; };
+		FA4245062F156D19004E470A /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA4245052F156D19004E470A /* GoogleSignInSwift */; };
+		FAA495402F1F25AA000F5E6C /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = FAA4953F2F1F25AA000F5E6C /* FirebaseAppCheck */; };
+		FAAD8AA42F10EDA700CE7689 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FAAD8AA32F10EDA700CE7689 /* FirebaseAnalytics */; };
+		FAAD8AA62F10EDA700CE7689 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = FAAD8AA52F10EDA700CE7689 /* FirebaseAnalyticsCore */; };
+		FAAD8AA82F10EDA700CE7689 /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = FAAD8AA72F10EDA700CE7689 /* FirebaseAnalyticsIdentitySupport */; };
+		FAF49F842F1614280046FF45 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = FAAD8A9F2F10EDA700CE7689 /* FirebaseAI */; };
+		FAF49F852F1614280046FF45 /* FirebaseAILogic in Frameworks */ = {isa = PBXBuildFile; productRef = FAAD8AA12F10EDA700CE7689 /* FirebaseAILogic */; };
+		FAF4A0072F1770E70046FF45 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = FAF4A0062F1770E70046FF45 /* RevenueCat */; };
+		FAF4A0092F1770E70046FF45 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = FAF4A0082F1770E70046FF45 /* RevenueCatUI */; };
+		FAF4A0192F178C100046FF45 /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FAF4A0122F178C100046FF45 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FAF4A0222F178E9F0046FF45 /* OneSignalExtension in Frameworks */ = {isa = PBXBuildFile; productRef = FAF4A0212F178E9F0046FF45 /* OneSignalExtension */; };
+		FAF4A0242F178E9F0046FF45 /* OneSignalFramework in Frameworks */ = {isa = PBXBuildFile; productRef = FAF4A0232F178E9F0046FF45 /* OneSignalFramework */; };
+		FAF4A0262F178E9F0046FF45 /* OneSignalInAppMessages in Frameworks */ = {isa = PBXBuildFile; productRef = FAF4A0252F178E9F0046FF45 /* OneSignalInAppMessages */; };
+		FAFA564E2F18D67D006FCDA7 /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = FAFA564D2F18D67D006FCDA7 /* FlowStacks */; };
+		FAFA56572F18E2D4006FCDA7 /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = FAFA56562F18E2D4006FCDA7 /* SwiftfulRouting */; };
+		FAFCFD022F0F43ED0046D973 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAFCFD012F0F43ED0046D973 /* StoreKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAF4A0172F178C100046FF45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAFCFCC42F0F3AB10046D973 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAF4A0112F178C100046FF45;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+		FAFCFCDB2F0F3AB30046D973 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAFCFCC42F0F3AB10046D973 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAFCFCCB2F0F3AB10046D973;
+			remoteInfo = tameion;
+		};
+		FAFCFCE52F0F3AB30046D973 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAFCFCC42F0F3AB10046D973 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAFCFCCB2F0F3AB10046D973;
+			remoteInfo = tameion;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FAF4A01E2F178C100046FF45 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FAF4A0192F178C100046FF45 /* OneSignalNotificationServiceExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FAF4A0122F178C100046FF45 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFCFCCC2F0F3AB10046D973 /* tameion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tameion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFCFCDA2F0F3AB30046D973 /* tameionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tameionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFCFCE42F0F3AB30046D973 /* tameionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tameionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFCFCF82F0F407B0046D973 /* JournalingSuggestions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JournalingSuggestions.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk/System/Library/Frameworks/JournalingSuggestions.framework; sourceTree = DEVELOPER_DIR; };
+		FAFCFCFD2F0F408F0046D973 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.5.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		FAFCFD012F0F43ED0046D973 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FAF4A01D2F178C100046FF45 /* Exceptions for "OneSignalNotificationServiceExtension" folder in "OneSignalNotificationServiceExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FAF4A0112F178C100046FF45 /* OneSignalNotificationServiceExtension */;
+		};
+		FAFCFD002F0F40F00046D973 /* Exceptions for "tameion" folder in "tameion" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FAFCFCCB2F0F3AB10046D973 /* tameion */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FAF4A0132F178C100046FF45 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FAF4A01D2F178C100046FF45 /* Exceptions for "OneSignalNotificationServiceExtension" folder in "OneSignalNotificationServiceExtension" target */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		FAFCFCCE2F0F3AB10046D973 /* tameion */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FAFCFD002F0F40F00046D973 /* Exceptions for "tameion" folder in "tameion" target */,
+			);
+			path = tameion;
+			sourceTree = "<group>";
+		};
+		FAFCFCDD2F0F3AB30046D973 /* tameionTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = tameionTests;
+			sourceTree = "<group>";
+		};
+		FAFCFCE72F0F3AB30046D973 /* tameionUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = tameionUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAF4A00F2F178C100046FF45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAF4A0222F178E9F0046FF45 /* OneSignalExtension in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCC92F0F3AB10046D973 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA495402F1F25AA000F5E6C /* FirebaseAppCheck in Frameworks */,
+				FAF49F852F1614280046FF45 /* FirebaseAILogic in Frameworks */,
+				FAF49F842F1614280046FF45 /* FirebaseAI in Frameworks */,
+				FAF4A0092F1770E70046FF45 /* RevenueCatUI in Frameworks */,
+				FAFCFD022F0F43ED0046D973 /* StoreKit.framework in Frameworks */,
+				FAF4A0242F178E9F0046FF45 /* OneSignalFramework in Frameworks */,
+				FAFA564E2F18D67D006FCDA7 /* FlowStacks in Frameworks */,
+				FAAD8AA82F10EDA700CE7689 /* FirebaseAnalyticsIdentitySupport in Frameworks */,
+				FAF4A0262F178E9F0046FF45 /* OneSignalInAppMessages in Frameworks */,
+				FA4244C62F127230004E470A /* FirebaseAuth in Frameworks */,
+				FA4244CA2F127230004E470A /* FirebaseCrashlytics in Frameworks */,
+				FAAD8AA62F10EDA700CE7689 /* FirebaseAnalyticsCore in Frameworks */,
+				FA4245062F156D19004E470A /* GoogleSignInSwift in Frameworks */,
+				FA4244C82F127230004E470A /* FirebaseCore in Frameworks */,
+				FAFA56572F18E2D4006FCDA7 /* SwiftfulRouting in Frameworks */,
+				FAF4A0072F1770E70046FF45 /* RevenueCat in Frameworks */,
+				FAAD8AA42F10EDA700CE7689 /* FirebaseAnalytics in Frameworks */,
+				FA4244C22F1271F4004E470A /* FirebaseFirestore in Frameworks */,
+				FA4245042F156D19004E470A /* GoogleSignIn in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCD72F0F3AB30046D973 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCE12F0F3AB30046D973 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAFCFCC32F0F3AB10046D973 = {
+			isa = PBXGroup;
+			children = (
+				FAFCFCCE2F0F3AB10046D973 /* tameion */,
+				FAFCFCDD2F0F3AB30046D973 /* tameionTests */,
+				FAFCFCE72F0F3AB30046D973 /* tameionUITests */,
+				FAF4A0132F178C100046FF45 /* OneSignalNotificationServiceExtension */,
+				FAFCFCF72F0F407A0046D973 /* Frameworks */,
+				FAFCFCCD2F0F3AB10046D973 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAFCFCCD2F0F3AB10046D973 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAFCFCCC2F0F3AB10046D973 /* tameion.app */,
+				FAFCFCDA2F0F3AB30046D973 /* tameionTests.xctest */,
+				FAFCFCE42F0F3AB30046D973 /* tameionUITests.xctest */,
+				FAF4A0122F178C100046FF45 /* OneSignalNotificationServiceExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAFCFCF72F0F407A0046D973 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAFCFD012F0F43ED0046D973 /* StoreKit.framework */,
+				FAFCFCFD2F0F408F0046D973 /* MapKit.framework */,
+				FAFCFCF82F0F407B0046D973 /* JournalingSuggestions.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAF4A0112F178C100046FF45 /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAF4A01A2F178C100046FF45 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				FAF4A00E2F178C100046FF45 /* Sources */,
+				FAF4A00F2F178C100046FF45 /* Frameworks */,
+				FAF4A0102F178C100046FF45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FAF4A0132F178C100046FF45 /* OneSignalNotificationServiceExtension */,
+			);
+			name = OneSignalNotificationServiceExtension;
+			packageProductDependencies = (
+				FAF4A0212F178E9F0046FF45 /* OneSignalExtension */,
+			);
+			productName = OneSignalNotificationServiceExtension;
+			productReference = FAF4A0122F178C100046FF45 /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		FAFCFCCB2F0F3AB10046D973 /* tameion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAFCFCEE2F0F3AB30046D973 /* Build configuration list for PBXNativeTarget "tameion" */;
+			buildPhases = (
+				FAFCFCC82F0F3AB10046D973 /* Sources */,
+				FAFCFCC92F0F3AB10046D973 /* Frameworks */,
+				FAFCFCCA2F0F3AB10046D973 /* Resources */,
+				FAF4A01E2F178C100046FF45 /* Embed Foundation Extensions */,
+				FA6D3FE62F46781A006A35CA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAF4A0182F178C100046FF45 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FAFCFCCE2F0F3AB10046D973 /* tameion */,
+			);
+			name = tameion;
+			packageProductDependencies = (
+				FAAD8A9F2F10EDA700CE7689 /* FirebaseAI */,
+				FAAD8AA12F10EDA700CE7689 /* FirebaseAILogic */,
+				FAAD8AA32F10EDA700CE7689 /* FirebaseAnalytics */,
+				FAAD8AA52F10EDA700CE7689 /* FirebaseAnalyticsCore */,
+				FAAD8AA72F10EDA700CE7689 /* FirebaseAnalyticsIdentitySupport */,
+				FA4244C12F1271F4004E470A /* FirebaseFirestore */,
+				FA4244C52F127230004E470A /* FirebaseAuth */,
+				FA4244C72F127230004E470A /* FirebaseCore */,
+				FA4244C92F127230004E470A /* FirebaseCrashlytics */,
+				FA4245032F156D19004E470A /* GoogleSignIn */,
+				FA4245052F156D19004E470A /* GoogleSignInSwift */,
+				FAF4A0062F1770E70046FF45 /* RevenueCat */,
+				FAF4A0082F1770E70046FF45 /* RevenueCatUI */,
+				FAF4A0232F178E9F0046FF45 /* OneSignalFramework */,
+				FAF4A0252F178E9F0046FF45 /* OneSignalInAppMessages */,
+				FAFA564D2F18D67D006FCDA7 /* FlowStacks */,
+				FAFA56562F18E2D4006FCDA7 /* SwiftfulRouting */,
+				FAA4953F2F1F25AA000F5E6C /* FirebaseAppCheck */,
+			);
+			productName = tameion;
+			productReference = FAFCFCCC2F0F3AB10046D973 /* tameion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAFCFCD92F0F3AB30046D973 /* tameionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAFCFCF12F0F3AB30046D973 /* Build configuration list for PBXNativeTarget "tameionTests" */;
+			buildPhases = (
+				FAFCFCD62F0F3AB30046D973 /* Sources */,
+				FAFCFCD72F0F3AB30046D973 /* Frameworks */,
+				FAFCFCD82F0F3AB30046D973 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAFCFCDC2F0F3AB30046D973 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FAFCFCDD2F0F3AB30046D973 /* tameionTests */,
+			);
+			name = tameionTests;
+			packageProductDependencies = (
+			);
+			productName = tameionTests;
+			productReference = FAFCFCDA2F0F3AB30046D973 /* tameionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FAFCFCE32F0F3AB30046D973 /* tameionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAFCFCF42F0F3AB30046D973 /* Build configuration list for PBXNativeTarget "tameionUITests" */;
+			buildPhases = (
+				FAFCFCE02F0F3AB30046D973 /* Sources */,
+				FAFCFCE12F0F3AB30046D973 /* Frameworks */,
+				FAFCFCE22F0F3AB30046D973 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAFCFCE62F0F3AB30046D973 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FAFCFCE72F0F3AB30046D973 /* tameionUITests */,
+			);
+			name = tameionUITests;
+			packageProductDependencies = (
+			);
+			productName = tameionUITests;
+			productReference = FAFCFCE42F0F3AB30046D973 /* tameionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAFCFCC42F0F3AB10046D973 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					FAF4A0112F178C100046FF45 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					FAFCFCCB2F0F3AB10046D973 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					FAFCFCD92F0F3AB30046D973 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = FAFCFCCB2F0F3AB10046D973;
+					};
+					FAFCFCE32F0F3AB30046D973 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = FAFCFCCB2F0F3AB10046D973;
+					};
+				};
+			};
+			buildConfigurationList = FAFCFCC72F0F3AB10046D973 /* Build configuration list for PBXProject "tameion" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAFCFCC32F0F3AB10046D973;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FA4245022F152ED2004E470A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				FAF4A0052F1770E70046FF45 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				FAF4A0202F178E9F0046FF45 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */,
+				FAFA564C2F18D67D006FCDA7 /* XCRemoteSwiftPackageReference "FlowStacks" */,
+				FAFA56552F18E2D4006FCDA7 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FAFCFCCD2F0F3AB10046D973 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAFCFCCB2F0F3AB10046D973 /* tameion */,
+				FAFCFCD92F0F3AB30046D973 /* tameionTests */,
+				FAFCFCE32F0F3AB30046D973 /* tameionUITests */,
+				FAF4A0112F178C100046FF45 /* OneSignalNotificationServiceExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAF4A0102F178C100046FF45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCCA2F0F3AB10046D973 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCD82F0F3AB30046D973 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCE22F0F3AB30046D973 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA6D3FE62F46781A006A35CA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAF4A00E2F178C100046FF45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCC82F0F3AB10046D973 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCD62F0F3AB30046D973 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAFCFCE02F0F3AB30046D973 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAF4A0182F178C100046FF45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAF4A0112F178C100046FF45 /* OneSignalNotificationServiceExtension */;
+			targetProxy = FAF4A0172F178C100046FF45 /* PBXContainerItemProxy */;
+		};
+		FAFCFCDC2F0F3AB30046D973 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAFCFCCB2F0F3AB10046D973 /* tameion */;
+			targetProxy = FAFCFCDB2F0F3AB30046D973 /* PBXContainerItemProxy */;
+		};
+		FAFCFCE62F0F3AB30046D973 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAFCFCCB2F0F3AB10046D973 /* tameion */;
+			targetProxy = FAFCFCE52F0F3AB30046D973 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FAF4A01B2F178C100046FF45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sholaventuresllc.tameion.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAF4A01C2F178C100046FF45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneSignalNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sholaventuresllc.tameion.OneSignalNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAFCFCEC2F0F3AB30046D973 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				n = "";
+			};
+			name = Debug;
+		};
+		FAFCFCED2F0F3AB30046D973 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				n = "";
+			};
+			name = Release;
+		};
+		FAFCFCEF2F0F3AB30046D973 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tameion/tameion.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				EXCLUDED_ARCHS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = tameion/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tameion;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use this to unlock the phone and protect journal entries.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sholaventuresllc.tameion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		FAFCFCF02F0F3AB30046D973 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = tameion/tameion.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				EXCLUDED_ARCHS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = tameion/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tameion;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use this to unlock the phone and protect journal entries.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sholaventuresllc.tameion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		FAFCFCF22F0F3AB30046D973 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sv.tameionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tameion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/tameion";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		FAFCFCF32F0F3AB30046D973 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sv.tameionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tameion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/tameion";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		FAFCFCF52F0F3AB30046D973 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sv.tameionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = tameion;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		FAFCFCF62F0F3AB30046D973 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 5L3L5S532W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sv.tameionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = tameion;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAF4A01A2F178C100046FF45 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAF4A01B2F178C100046FF45 /* Debug */,
+				FAF4A01C2F178C100046FF45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAFCFCC72F0F3AB10046D973 /* Build configuration list for PBXProject "tameion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAFCFCEC2F0F3AB30046D973 /* Debug */,
+				FAFCFCED2F0F3AB30046D973 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAFCFCEE2F0F3AB30046D973 /* Build configuration list for PBXNativeTarget "tameion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAFCFCEF2F0F3AB30046D973 /* Debug */,
+				FAFCFCF02F0F3AB30046D973 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAFCFCF12F0F3AB30046D973 /* Build configuration list for PBXNativeTarget "tameionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAFCFCF22F0F3AB30046D973 /* Debug */,
+				FAFCFCF32F0F3AB30046D973 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAFCFCF42F0F3AB30046D973 /* Build configuration list for PBXNativeTarget "tameionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAFCFCF52F0F3AB30046D973 /* Debug */,
+				FAFCFCF62F0F3AB30046D973 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA4245022F152ED2004E470A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.0;
+			};
+		};
+		FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.7.0;
+			};
+		};
+		FAF4A0052F1770E70046FF45 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.54.0;
+			};
+		};
+		FAF4A0202F178E9F0046FF45 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OneSignal/OneSignal-iOS-SDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.16;
+			};
+		};
+		FAFA564C2F18D67D006FCDA7 /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.12;
+			};
+		};
+		FAFA56552F18E2D4006FCDA7 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulRouting.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA4244C12F1271F4004E470A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		FA4244C52F127230004E470A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		FA4244C72F127230004E470A /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		FA4244C92F127230004E470A /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		FA4245032F156D19004E470A /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4245022F152ED2004E470A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		FA4245052F156D19004E470A /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4245022F152ED2004E470A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		FAA4953F2F1F25AA000F5E6C /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		FAAD8A9F2F10EDA700CE7689 /* FirebaseAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAI;
+		};
+		FAAD8AA12F10EDA700CE7689 /* FirebaseAILogic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAILogic;
+		};
+		FAAD8AA32F10EDA700CE7689 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		FAAD8AA52F10EDA700CE7689 /* FirebaseAnalyticsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsCore;
+		};
+		FAAD8AA72F10EDA700CE7689 /* FirebaseAnalyticsIdentitySupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAAD8A9E2F10EDA600CE7689 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsIdentitySupport;
+		};
+		FAF4A0062F1770E70046FF45 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAF4A0052F1770E70046FF45 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		FAF4A0082F1770E70046FF45 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAF4A0052F1770E70046FF45 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
+		FAF4A0212F178E9F0046FF45 /* OneSignalExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAF4A0202F178E9F0046FF45 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalExtension;
+		};
+		FAF4A0232F178E9F0046FF45 /* OneSignalFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAF4A0202F178E9F0046FF45 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalFramework;
+		};
+		FAF4A0252F178E9F0046FF45 /* OneSignalInAppMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAF4A0202F178E9F0046FF45 /* XCRemoteSwiftPackageReference "OneSignal-iOS-SDK" */;
+			productName = OneSignalInAppMessages;
+		};
+		FAFA564D2F18D67D006FCDA7 /* FlowStacks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFA564C2F18D67D006FCDA7 /* XCRemoteSwiftPackageReference "FlowStacks" */;
+			productName = FlowStacks;
+		};
+		FAFA56562F18E2D4006FCDA7 /* SwiftfulRouting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFA56552F18E2D4006FCDA7 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
+			productName = SwiftfulRouting;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FAFCFCC42F0F3AB10046D973 /* Project object */;
+}

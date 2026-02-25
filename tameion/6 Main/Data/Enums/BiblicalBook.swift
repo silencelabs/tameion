@@ -1,0 +1,84 @@
+//
+//  BiblicalBook.swift
+//  tameion
+//
+//  Created by Shola Ventures on 2/3/26.
+//
+import SwiftUI
+
+enum BiblicalBook: String, Codable, CaseIterable  {
+    case none
+    case Genesis
+    case Exodus
+    case Leviticus
+    case Numbers
+    case Deuteronomy
+    case Joshua
+    case Judges
+    case Ruth
+    case FirstSamuel
+    case SecondSamuel
+    case FirstKings
+    case SecondKings
+    case FirstChronicles
+    case SecondChronicles
+    case Ezra
+    case Nehemiah
+    case Tobit
+    case Judith
+    case Esther
+    case FirstMaccabees
+    case SecondMaccabees
+    case Job
+    case Psalms
+    case Proverbs
+    case Ecclesiastes
+    case SongOfSongs
+    case Wisdom
+    case Sirach
+    case Isaiah
+    case Jeremiah
+    case Lamentations
+    case Baruch
+    case Ezekiel
+    case Daniel
+    case Hosea
+    case Joel
+    case Amos
+    case Obadiah
+    case Jonah
+    case Micah
+    case Nahum
+    case Habakkuk
+    case Zephaniah
+    case Haggai
+    case Zechariah
+    case Malachi
+    case Matthew
+    case Mark
+    case Luke
+    case John
+    case Acts
+    case Romans
+    case FirstCorinthians
+    case SecondCorinthians
+    case Galatians
+    case Ephesians
+    case Philippians
+    case Colossians
+    case FirstThessalonians
+    case SecondThessalonians
+    case FirstTimothy
+    case SecondTimothy
+    case Titus
+    case Philemon
+    case Hebrews
+    case James
+    case FirstPeter
+    case SecondPeter
+    case FirstJohn
+    case SecondJohn
+    case ThirdJohn
+    case Jude
+    case Revelation
+}
