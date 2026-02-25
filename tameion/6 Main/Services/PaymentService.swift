@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import SwiftUI
 import RevenueCat
+import Sentry
 
 @MainActor
 final class PaymentsService: NSObject, ObservableObject  {
@@ -27,18 +28,17 @@ final class PaymentsService: NSObject, ObservableObject  {
     
     func configure(appUserID: String) {
         guard !isConfigured else {
-            print("⚠️ PaymentsService already configured")
             return
         }
         
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "RevenueCatAPIKey") as? String else {
+            SentrySDK.capture(message: "RevenueCatAPIKey is not found")
             fatalError("RevenueCatAPIKey not found")
         }
         
         Purchases.configure(withAPIKey: apiKey, appUserID: appUserID)
         isConfigured = true
-        print("✅ PaymentsService configured for user: \(appUserID)")
-        
+
         self.setupPurchasesListener()
     }
     

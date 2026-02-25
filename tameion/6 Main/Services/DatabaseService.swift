@@ -7,6 +7,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Sentry
 
 import FirebaseCore
 import FirebaseFirestore
@@ -160,8 +161,6 @@ final class DatabaseService: ObservableObject {
         endReachedByJournal[key] = false
         loadingByJournal[key]    = false
 
-        print("REFLECT: STARTED THE REFLECT LISTENER")
-
         var query: Query = db.collection(Collections.entries)
             .whereField("userId", isEqualTo: userId)
             .whereField("deleted", isEqualTo: false)
@@ -169,18 +168,19 @@ final class DatabaseService: ObservableObject {
             .limit(to: pageSize)
 
         if let jId = activeJournal?.id, !jId.isEmpty {
-            print("REFELCT: MY ACTIVE ID IS: \(jId)")
             query = query.whereField("journalId", isEqualTo: jId)
         }
 
         reflectListener = query.addSnapshotListener { [weak self] snapshot, error in
             guard let self else { return }
             if let error = error {
-                print("❌ [Reflect/\(key)] \(error.localizedDescription)")
+                SentrySDK.capture(error: error) { scope in
+                    scope.setTag(value: key, key: "journal_key")
+                    scope.setContext(value: ["key": key], key: "pagination_details")
+                }
                 return
             }
             guard let docs = snapshot?.documents else {
-                print("REFLECT: FOUND NO DOCUMENTS")
                 return
             }
 
@@ -223,6 +223,7 @@ final class DatabaseService: ObservableObject {
     }
 
     func setActiveUserData(userId: String) {
+
         Task { @MainActor in
             let user = await readUser(id: userId)
             self.activeUser = user.data
@@ -278,7 +279,7 @@ final class DatabaseService: ObservableObject {
             .addSnapshotListener { [weak self] snapshot, error in
                 guard let self else { return }
                 if let error = error {
-                    print("❌ [Seek] \(error.localizedDescription)")
+                    SentrySDK.capture(error: error)
                     return
                 }
                 let entries = snapshot?.documents.compactMap { try? $0.data(as: Entry.self) } ?? []
@@ -302,16 +303,13 @@ final class DatabaseService: ObservableObject {
         let key = Self.journalKey(journalId)
 
         guard !endReachedByJournal[key, default: false] else {
-            print("REFLECT: TRYING TO FETCH NEXT PAGE - END REACHED FAILED")
             return
         }
 
         // Ensure we have a cursor from the listener/previous fetch
         guard let cursor = cursorsByJournal[key] else {
-            print("REFLECT: TRYING TO FETCH NEXT PAGE - CURSOR FAILED")
             return
         }
-        print("REFLECT: TRYING TO FETCH NEXT PAGE - GUARDS PASSED FOR KEY \(key)")
 
         // --- 2. THE LOCK ---
         // Set this IMMEDIATELY to block any other calls from the UI
@@ -380,7 +378,7 @@ final class DatabaseService: ObservableObject {
                 }
 
             } catch {
-                print("❌ [Reflect/\(key)] fetch error: \(error.localizedDescription)")
+                SentrySDK.capture(error: error)
             }
         }
     }
@@ -390,29 +388,15 @@ final class DatabaseService: ObservableObject {
     /// Guards against duplicate in-flight fetches and delegates to `fetchNextPage`.
     func loadMoreEntries() {
         let key = Self.journalKey(activeJournal)
-        guard !isFetchingMore || !loadingByJournal[key]! else {
-            print("REFLECT: TRYING TO LOAD MORE ENTRIES - FETCHING MORE RETURNED")
-            return
-        }
+        guard !isFetchingMore || !loadingByJournal[key]! else { return }
 
-        guard !(endReachedByJournal[key] ?? false) else {
-            print("REFLECT: TRYING TO LOAD MORE ENTRIES - END REACH RETURNED")
-            return
-        }
-        guard let cursor = cursorsByJournal[key] else {
-            print("REFLECT: TRYING TO LOAD MORE ENTRIES - CURSOR RETURNED")
-            return
-        }
-        guard let userId = currentUserId else {
-            print("REFLECT: TRYING TO LOAD MORE ENTRIES - USER ID RETURNED")
-            return
-        }
-        print("REFLECT: TRYING TO LOAD MORE ENTRIES - GUARDS PASSED FOR KEY \(key)")
+        guard !(endReachedByJournal[key] ?? false) else { return }
+        guard let cursor = cursorsByJournal[key] else { return }
+        guard let userId = currentUserId else { return }
 
         isFetchingMore = true
         loadingByJournal[key] = true
         fetchNextPage(userId: userId, journalId: activeJournal?.id)
-        
     }
 
     /// True while a page fetch is in-flight — use to show a bottom spinner.
@@ -580,7 +564,9 @@ final class DatabaseService: ObservableObject {
 
             let listener = query.addSnapshotListener { snapshot, error in
                 if let error = error {
-                    print("❌ [\(collection)] \(error.localizedDescription)")
+                    SentrySDK.capture(error: error) { scope in
+                        scope.setTag(value: collection, key: "collection")
+                    }
                     continuation.yield([])
                     return
                 }
@@ -716,7 +702,6 @@ extension DatabaseService {
         do {
             for (collectionName, isJournals) in allCollections {
                 let snapshot = try await db.collection(collectionName).getDocuments()
-                print("📦 [\(collectionName)] \(snapshot.documents.count) documents")
 
                 // Firestore batch max is 500 — chunk just in case
                 let chunks = snapshot.documents.chunked(into: 400)
@@ -770,18 +755,13 @@ extension DatabaseService {
 
                     if batchHasChanges {
                         try await batch.commit()
-                        print("✅ [\(collectionName)] Batch committed")
-                    } else {
-                        print("⏭️ [\(collectionName)] No changes needed")
                     }
                 }
             }
-
-            print("🎉 Migration complete. \(totalUpdated) documents updated.")
             return (true, totalUpdated, nil)
 
         } catch {
-            print("❌ Migration failed: \(error.localizedDescription)")
+            SentrySDK.capture(error: error)
             return (false, totalUpdated, error)
         }
     }

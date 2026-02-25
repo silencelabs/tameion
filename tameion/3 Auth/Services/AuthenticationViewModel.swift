@@ -11,6 +11,7 @@ import AuthenticationServices
 import GoogleSignIn
 import GoogleSignInSwift
 import Combine
+import Sentry
 
 enum AuthenticationState {
   case unauthenticated
@@ -48,7 +49,7 @@ class AuthenticationViewModel: ObservableObject {
         authService.isAuthenticated
     }
     
-    var currentUser: User? {
+    var currentUser: FirebaseAuth.User? {
         authService.currentUser
     }
     
@@ -136,7 +137,7 @@ extension AuthenticationViewModel {
             isLoading = false
             return true
         } catch {
-            print("❌ Email sign in error: \(error.localizedDescription)")
+            SentrySDK.capture(error: error)
             errorMessage = error.localizedDescription
             isLoading = false
             return false
@@ -152,7 +153,7 @@ extension AuthenticationViewModel {
             isLoading = false
             return true
         } catch {
-            print("❌ Email sign up error: \(error.localizedDescription)")
+            SentrySDK.capture(error: error)
             errorMessage = error.localizedDescription
             isLoading = false
             return false
@@ -173,7 +174,7 @@ extension AuthenticationViewModel {
             isLoading = false
             return true
         } catch {
-            print("❌ Delete account error: \(error.localizedDescription)")
+            SentrySDK.capture(error: error)
             errorMessage = error.localizedDescription
             isLoading = false
             return false
@@ -196,11 +197,11 @@ extension AuthenticationViewModel {
         switch result {
         case .failure(let error):
             errorMessage = error.localizedDescription
-            print("❌ Apple Sign In failed: \(error.localizedDescription)")
-            
+            SentrySDK.capture(error: error)
+
         case .success(let authorization):
             guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-                errorMessage = "Failed to get Apple ID credential"
+                errorMessage = DSCopy.Auth.Apple.failedCred
                 return
             }
             
@@ -210,13 +211,14 @@ extension AuthenticationViewModel {
     
     private func signInWithApple(credential: ASAuthorizationAppleIDCredential) {
         guard let nonce = currentNonce else {
-            fatalError("Invalid State: a login callback was received, but no login request was sent.")
+            SentrySDK.capture(message: DSCopy.Auth.Apple.invalidState)
+            fatalError(DSCopy.Auth.Apple.invalidState)
         }
         
         guard let appleIDToken = credential.identityToken,
               let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-            print("❌ Unable to serialize Apple ID token")
-            errorMessage = "Unable to process Apple ID token"
+            errorMessage = DSCopy.Auth.Apple.failedToProcess
+            SentrySDK.capture(message: errorMessage)
             return
         }
         
@@ -232,7 +234,7 @@ extension AuthenticationViewModel {
                 )
                 isLoading = false
             } catch {
-                print("❌ Error authenticating with Apple: \(error.localizedDescription)")
+                SentrySDK.capture(error: error)
                 errorMessage = error.localizedDescription
                 isLoading = false
             }
@@ -245,7 +247,8 @@ extension AuthenticationViewModel {
 extension AuthenticationViewModel {
     func signInWithGoogle() async -> Bool {
         guard let clientID = FirebaseApp.app()?.options.clientID else {
-            fatalError("No client ID found in Firebase configuration.")
+            SentrySDK.capture(message: errorMessage)
+            fatalError(DSCopy.Auth.Google.missingConfiguration)
         }
         
         let config = GIDConfiguration(clientID: clientID)
@@ -254,8 +257,8 @@ extension AuthenticationViewModel {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first,
               let rootViewController = window.rootViewController else {
-            print("❌ Unable to get root view controller")
-            errorMessage = "Unable to present Google Sign In"
+            errorMessage = DSCopy.Auth.Google.failedToProcess
+            SentrySDK.capture(message: errorMessage)
             return false
         }
         
@@ -269,7 +272,7 @@ extension AuthenticationViewModel {
             
             let user = userAuthentication.user
             guard let idToken = user.idToken else {
-                throw AuthenticationError.tokenError(message: "ID token missing")
+                throw AuthenticationError.tokenError(message: DSCopy.Auth.Google.missingToken)
             }
             
             try await FirebaseAuthService.shared.signInWithGoogle(
@@ -282,7 +285,7 @@ extension AuthenticationViewModel {
             
         } catch {
             errorMessage = error.localizedDescription
-            print("❌ Google Sign In error: \(error.localizedDescription)")
+            SentrySDK.capture(error: error)
             isLoading = false
             return false
         }
@@ -302,228 +305,3 @@ enum AuthenticationError: LocalizedError {
     }
 }
 
-
-
-
-
-
-    
-    
-    
-//  init() {
-//    registerAuthStateHandler()
-//
-//    $flow
-//      .combineLatest($email, $password, $confirmPassword)
-//      .map { flow, email, password, confirmPassword in
-//        flow == .login
-//          ? !(email.isEmpty || password.isEmpty)
-//          : !(email.isEmpty || password.isEmpty || confirmPassword.isEmpty)
-//      }
-//      .assign(to: &$isValid)
-//  }
-//
-//  private var authStateHandler: AuthStateDidChangeListenerHandle?
-//
-//  func registerAuthStateHandler() {
-//    if authStateHandler == nil {
-//      authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
-//        self.user = user
-//        self.authenticationState = user == nil ? .unauthenticated : .authenticated
-//        self.displayName = user?.email ?? ""
-//      }
-//    }
-//  }
-
-//  func switchFlow() {
-//    flow = flow == .login ? .signUp : .login
-//    errorMessage = ""
-//  }
-//
-//  private func wait() async {
-//    do {
-//      print("Wait")
-//      try await Task.sleep(nanoseconds: 1_000_000_000)
-//      print("Done")
-//    }
-//    catch {
-//      print(error.localizedDescription)
-//    }
-//  }
-//
-//  func reset() {
-//    flow = .login
-//    email = ""
-//    password = ""
-//    confirmPassword = ""
-//  }
-//}
-//
-//// MARK: - Email and Password Authentication
-//
-//extension AuthenticationViewModel {
-//  func signInWithEmailPassword() async -> Bool {
-//    authenticationState = .authenticating
-//    do {
-//      try await Auth.auth().signIn(withEmail: self.email, password: self.password)
-//      return true
-//    }
-//    catch  {
-//      print(error)
-//      errorMessage = error.localizedDescription
-//      authenticationState = .unauthenticated
-//      return false
-//    }
-//  }
-//
-//  func signUpWithEmailPassword() async -> Bool {
-//    authenticationState = .authenticating
-//    do  {
-//      try await Auth.auth().createUser(withEmail: email, password: password)
-//      return true
-//    }
-//    catch {
-//      print(error)
-//      errorMessage = error.localizedDescription
-//      authenticationState = .unauthenticated
-//      return false
-//    }
-//  }
-//
-//  func signOut() {
-//    do {
-//        try Auth.auth().signOut()
-//        authService.signOut()
-//    }
-//    catch {
-//      print(error)
-//      errorMessage = error.localizedDescription
-//    }
-//  }
-//
-//  func deleteAccount() async -> Bool {
-//    do {
-//      try await user?.delete()
-//      return true
-//    }
-//    catch {
-//      errorMessage = error.localizedDescription
-//      return false
-//    }
-//  }
-//}
-//
-//// MARK: - Apple Authentication
-//
-//extension AuthenticationViewModel {
-//    func handleSignInWithAppleRequest(_ request: ASAuthorizationAppleIDRequest) {
-//        request.requestedScopes = [.email, .fullName]
-//        let nonce = authService.randomNonceString()
-//        currentNonce = nonce
-//        request.nonce = authService.sha256(nonce)
-//    }
-//    
-//    func handleSignInWithAppleCompletion(_ result: Result<ASAuthorization, Error>) {
-//        if case .failure(let error) = result {
-//            errorMessage = error.localizedDescription
-//            print("Failed to sign in: \(error.localizedDescription)")
-//        }
-//        else if case .success(let success) = result {
-//            if let appleIDCredential = success.credential as? ASAuthorizationAppleIDCredential {
-//                guard let nonce = currentNonce else {
-//                    fatalError("Invalid State: a login callback was received, but no login request was sent.")
-//                }
-//                guard let appleIDToken = appleIDCredential.identityToken else {
-//                    print("Unable to fetch Apple ID token")
-//                    return
-//                }
-//                guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-//                    print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-//                    return
-//                  }
-//                
-//                let credential = OAuthProvider.appleCredential(withIDToken: idTokenString,
-//                                                                        rawNonce: nonce,
-//                                                                        fullName: appleIDCredential.fullName)
-//                
-//                Task {
-//                    do {
-//                        let result = try await Auth.auth().signIn(with: credential)
-//                        print("credentials successfully signed in: \(result.user.uid)")
-//                        print("display name is \(result.user.displayName ?? "no name")")
-//                        print("email is \(result.user.email ?? "no name")")
-//                        authService.currentUser?.displayName = (appleIDCredential.fullName?.familyName ?? "")
-//                        await updateDisplayName(for: result.user, with: appleIDCredential)
-//                    }
-//                    catch {
-//                        print("Error authenticating: \(error.localizedDescription)")
-//                    }
-//                }
-//                
-//            }
-//        }
-//        
-//        func updateDisplayName(for user: User, with appleIDCredential: ASAuthorizationAppleIDCredential, force: Bool = false) async {
-//            if let currentDisplayName = Auth.auth().currentUser?.displayName, !currentDisplayName.isEmpty {
-//                print("current user is non-empty, don't overwrite.")
-//
-//                // current user is non-empty, don't overwrite.
-//            }
-//            else {
-//                let changeRequest = user.createProfileChangeRequest()
-//                changeRequest.displayName = appleIDCredential.fullName?.givenName
-//                do {
-//                    try await changeRequest.commitChanges()
-//                    self.displayName = Auth.auth().currentUser?.displayName ?? ""
-//                    print("credentialed found display name: \(self.displayName)")
-//                }
-//                catch {
-//                    errorMessage = error.localizedDescription
-//                    print("Unable to update the user's full name: \(error.localizedDescription)")
-//                }
-//                
-//            }
-//        }
-//    }
-//}
-//
-//// MARK: - Google Authentication
-//enum AuthenticationError: Error {
-//    case tokenError(message: String)
-//}
-//
-//extension AuthenticationViewModel {
-//    func signInWithGoogle() async -> Bool {
-//        guard let clientID = FirebaseApp.app()?.options.clientID else {
-//            fatalError("No client ID found in Firebase configuration.")
-//        }
-//        let config = GIDConfiguration(clientID: clientID)
-//        GIDSignIn.sharedInstance.configuration = config
-//        
-//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-//              let window = windowScene.windows.first,
-//              let rootViewController = window.rootViewController else {
-//            return false
-//        }
-//        
-//        do {
-//            let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
-//            let user = userAuthentication.user
-//            guard let idToken = user.idToken else {
-//                throw AuthenticationError.tokenError(message: "ID token missing")
-//            }
-//            let accessToken = user.accessToken
-//            let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken.tokenString)
-//            let result = try await Auth.auth().signIn(with: credential)
-//            let firebaseUser = result.user
-//            print("User \(firebaseUser.uid) signed in with email \(firebaseUser.email ?? "no email")")
-//            return true
-//        }
-//        catch {
-//            errorMessage = error.localizedDescription
-//            print(error.localizedDescription)
-//            return false
-//        }
-//        return false
-//    }
-//}

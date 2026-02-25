@@ -7,6 +7,7 @@
 import SwiftUI
 import Combine
 import FirebaseAuth
+import Sentry
 
 @MainActor
 final class AppState: ObservableObject {
@@ -33,30 +34,18 @@ final class AppState: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func updatePhase(user: User?) {
+    private func updatePhase(user: FirebaseAuth.User?) {
         let hasSeenWelcome = UserDefaults.standard.bool(forKey: "hasSeenWelcome")
-
         if user == nil {
-            // No user authenticated - show auth screen
             phase = .auth
             isLocked = false // Reset lock state when signed out
-            print("📱 App Phase: Auth (no user)")
-
         } else if !hasSeenWelcome {
-            // User authenticated but hasn't seen welcome - show onboarding
-            print("REFLECT: UPDATE PHASE CREATE USER DETAILS FOR \(String(describing: user?.uid))")
             remoteService.createActiveUserDetails(userId: user?.uid ?? remoteService.currentUserId ?? "")
-
             phase = .onboarding
             isLocked = false // Don't lock during onboarding
-            print("📱 App Phase: Onboarding (new user)")
-
         } else {
-            // User authenticated and has seen welcome - show main app
             phase = .main
-            // Check if we should lock on startup
             lockAppIfNeeded()
-            print("📱 App Phase: Main (returning user)")
         }
     }
 
@@ -72,23 +61,16 @@ final class AppState: ObservableObject {
             // Mark welcome as seen and go to main
             UserDefaults.standard.set(true, forKey: "hasSeenWelcome")
             phase = .main
-            print("➡️ Advanced to Main (completed onboarding)")
 
         case .auth:
-            // User just authenticated
             if !hasSeenWelcome {
-                print("REFLECT: CREATE USER DETAILS FOR \(String(describing: remoteService.currentUserId))")
                 remoteService.createActiveUserDetails(userId: (remoteService.currentUserId) ?? "")
                 phase = .onboarding
-                print("➡️ Advanced to Onboarding (first time user)")
             } else {
                 phase = .main
-                print("➡️ Advanced to Main (returning user)")
             }
 
         case .main:
-            // Already at final phase
-            print("ℹ️ Already at Main phase")
             break
         }
     }
@@ -139,7 +121,6 @@ final class AppState: ObservableObject {
 
     func unlockApp() {
         guard let userId = authService.currentUser?.uid else {
-            print("❌ No authenticated user to unlock")
             return
         }
 
@@ -156,11 +137,9 @@ final class AppState: ObservableObject {
             reason: "Unlock your journal",
             onSuccess: { [weak self] in
                 self?.isLocked = false
-                print("✅ App unlocked with biometrics")
             },
-            onFailure: { error in
-                print("❌ Unlock failed: \(error)")
-                // Stay locked on failure
+            onFailure: { error_msg in
+                SentrySDK.capture(message: "Unlock failed: \(error_msg)")
             }
         )
     }
@@ -169,6 +148,5 @@ final class AppState: ObservableObject {
     func forceLock() {
         guard authService.currentUser != nil, phase == .main else { return }
         isLocked = true
-        print("🔒 App force locked")
     }
 }

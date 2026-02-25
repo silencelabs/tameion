@@ -30,11 +30,9 @@ final class BiometricAuthService: ObservableObject {
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             biometricType = context.biometryType
             isAvailable = true
-            print("✅ Biometrics available: \(biometricTypeString)")
         } else {
             biometricType = .none
             isAvailable = false
-            print("❌ Biometrics not available: \(error?.localizedDescription ?? "Unknown error")")
         }
     }
 
@@ -74,12 +72,12 @@ final class BiometricAuthService: ObservableObject {
     ///   - onSuccess: Callback on successful authentication
     ///   - onFailure: Callback on failed authentication with error message
     func unlockWithBiometricsOrPasscode(
-        reason: String = "Unlock your journal",
+        reason: String = DSCopy.Auth.lockJournal,
         onSuccess: @escaping () -> Void,
         onFailure: @escaping (String) -> Void
     ) {
         let context = LAContext()
-        context.localizedCancelTitle = "Use Passcode"
+        context.localizedCancelTitle = DSCopy.Auth.usePasscode
 
         var error: NSError?
 
@@ -104,7 +102,7 @@ final class BiometricAuthService: ObservableObject {
                             onFailure(error.localizedDescription)
                         }
                     } else {
-                        onFailure(authError?.localizedDescription ?? "Authentication failed")
+                        onFailure(authError?.localizedDescription ?? DSCopy.Auth.failed)
                     }
                 }
             }
@@ -117,7 +115,7 @@ final class BiometricAuthService: ObservableObject {
     /// Authenticate with async/await pattern
     /// - Parameter reason: The reason shown to the user for authentication
     /// - Returns: True if authentication was successful
-    func authenticate(reason: String = "Unlock your journal") async -> Bool {
+    func authenticate(reason: String = DSCopy.Auth.lockJournal) async -> Bool {
         await withCheckedContinuation { continuation in
             unlockWithBiometricsOrPasscode(
                 reason: reason,
@@ -144,7 +142,7 @@ final class BiometricAuthService: ObservableObject {
 
         // Check if device passcode is available
         guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
-            onFailure(error?.localizedDescription ?? "Device passcode not available")
+            onFailure(error?.localizedDescription ?? DSCopy.Auth.notAvailable("Device Passcode"))
             return
         }
 
@@ -153,7 +151,7 @@ final class BiometricAuthService: ObservableObject {
                 if success {
                     onSuccess()
                 } else {
-                    onFailure(authError?.localizedDescription ?? "Passcode authentication failed")
+                    onFailure(authError?.localizedDescription ?? DSCopy.Auth.failed)
                 }
             }
         }

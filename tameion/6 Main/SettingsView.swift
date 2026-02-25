@@ -9,6 +9,7 @@ import SwiftUI
 import RevenueCat
 import RevenueCatUI
 import FirebaseCrashlytics
+import Sentry
 
 struct SettingsView: View {
 
@@ -70,15 +71,15 @@ struct SettingsView: View {
                                         .font(.body)
 
                                     if !biometricService.isAvailable {
-                                        Text("\(biometricService.biometricTypeString) not available on this device")
+                                        Text(DSCopy.Auth.notAvailable(biometricService.biometricTypeString))
                                             .font(.caption)
                                             .foregroundColor(.red)
                                     } else if settings.biometricsEnabled {
-                                        Text("App will lock when you leave")
+                                        Text(DSCopy.Auth.lockReminder)
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                     } else {
-                                        Text("Protect your journal with \(biometricService.biometricTypeString)")
+                                        Text(DSCopy.Auth.protectReminder(biometricService.biometricTypeString))
                                             .font(.caption)
                                             .foregroundColor(.secondary)
                                     }
@@ -88,24 +89,24 @@ struct SettingsView: View {
                         .disabled(!networkMonitor.isConnected)
                         .padding()
                     }
-                    .alert("Enable \(biometricService.biometricTypeString)?", isPresented: $showEnableBiometricAlert) {
-                        Button("Cancel", role: .cancel) { }
-                        Button("Enable") {
+                    .alert(DSCopy.CTA.enable(biometricService.biometricTypeString), isPresented: $showEnableBiometricAlert) {
+                        Button(DSCopy.CTA.cancel, role: .cancel) { }
+                        Button(DSCopy.CTA.enable) {
                             enableBiometric()
                         }
                     } message: {
-                        Text("You'll need to use \(biometricService.biometricTypeString) to unlock your journal every time you open the app.")
+                        Text(DSCopy.Auth.unlockReminder(biometricService.biometricTypeString))
                     }
-                    .alert("Disable \(biometricService.biometricTypeString)?", isPresented: $showDisableBiometricAlert) {
-                        Button("Cancel", role: .cancel) { }
-                        Button("Disable", role: .destructive) {
+                    .alert(DSCopy.CTA.disable(biometricService.biometricTypeString), isPresented: $showDisableBiometricAlert) {
+                        Button(DSCopy.CTA.cancel, role: .cancel) { }
+                        Button(DSCopy.CTA.disable, role: .destructive) {
                             disableBiometric()
                         }
                     } message: {
-                        Text("Your journal will no longer be protected by \(biometricService.biometricTypeString).")
+                        Text(DSCopy.Auth.protectionRemoved(biometricService.biometricTypeString))
                     }
-                    .alert("Authentication Required", isPresented: $showBiometricErrorAlert) {
-                        Button("OK", role: .cancel) { }
+                    .alert(DSCopy.Auth.required, isPresented: $showBiometricErrorAlert) {
+                        Button(DSCopy.CTA.ok, role: .cancel) { }
                     } message: {
                         Text(biometricErrorMessage)
                     }
@@ -144,7 +145,6 @@ struct SettingsView: View {
                 // Daily Reminder Date Picker
                 DatePicker(DSCopy.SettingsView.reminderTime, selection: $reminderTime, displayedComponents: [.hourAndMinute])
                     .onAppear {
-                        // Initialize local date from the service string
                         reminderTime = DSFormatter.timeStringToDate(settings.dailyReminderTime) ?? Date()
                     }
                     .onChange(of: reminderTime) { _, newDate in
@@ -156,7 +156,6 @@ struct SettingsView: View {
                     }
                     .padding()
                     .disabled(!networkMonitor.isConnected || !settings.dailyReminderEnabled)
-
 
                 FooterView()
 
@@ -173,26 +172,26 @@ struct SettingsView: View {
 
     private func enableBiometric() {
         guard (authService.currentUser?.uid) != nil else {
-            biometricErrorMessage = "No authenticated user"
+            biometricErrorMessage = DSCopy.Auth.noAuthUser
             showBiometricErrorAlert = true
             return
         }
 
         // Test authentication before enabling
         biometricService.unlockWithBiometricsOrPasscode(
-            reason: "Authenticate to enable \(biometricService.biometricTypeString) protection",
+            reason: DSCopy.Auth.protectionEnabled(biometricService.biometricTypeString),
             onSuccess: {
                 // Save preference to database
                 Task {
                     let updates = [UserSettingsUpdate.biometrics(true)]
                     let result = await remoteService.updateUserSettings(id: settings.id!, updates: updates)
                     if !result.success, let error = result.error {
-                        Crashlytics.crashlytics().record(error: error)
+                        SentrySDK.capture(error: error)
                     }
                 }
             },
-            onFailure: { error in
-                biometricErrorMessage = "Authentication failed: \(error)"
+            onFailure: { error_msg in
+                biometricErrorMessage = DSCopy.Auth.protectionFailed(error_msg)
                 showBiometricErrorAlert = true
             }
         )
@@ -200,7 +199,7 @@ struct SettingsView: View {
 
     private func disableBiometric() {
         guard (authService.currentUser?.uid) != nil else {
-            biometricErrorMessage = "No authenticated user"
+            biometricErrorMessage = DSCopy.Auth.noAuthUser
             showBiometricErrorAlert = true
             return
         }
@@ -210,7 +209,7 @@ struct SettingsView: View {
             let result = await remoteService.updateUserSettings(id: settings.id!, updates: updates)
 
             if !result.success, let error = result.error {
-                Crashlytics.crashlytics().record(error: error)
+                SentrySDK.capture(error: error)
             }
 
             // Unlock the app when disabled

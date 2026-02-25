@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Sentry
+
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
@@ -74,6 +76,38 @@ struct tameionApp: App {
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        SentrySDK.start { options in
+            options.dsn = "https://d0a27ad258d33bf8d122228ca4c4d86b@o4510946481733632.ingest.us.sentry.io/4510946485075968"
+            options.debug = true
+
+            // Additional Monitoring
+            options.enableAppHangTracking = true // Detects if the main thread freezes
+            options.enableWatchdogTerminationTracking = true // Detects OS-level kills
+            options.enableNetworkBreadcrumbs = true // Automatically tracks HTTP requests
+            options.enableCaptureFailedRequests = true // Captures HTTP errors (e.g., 404, 500)
+
+            // Adds IP for users.
+            // For more information, visit: https://docs.sentry.io/platforms/apple/data-management/data-collected/
+            options.sendDefaultPii = true
+
+            // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+            // We recommend adjusting this value in production.
+            // TODO: LOWER TO 0.1 ONCE READY TO LAUNCH TO SAVE ON COSTS
+            options.tracesSampleRate = 1.0
+
+            // Configure profiling. Visit https://docs.sentry.io/platforms/apple/profiling/ to learn more.
+            options.configureProfiling = {
+                $0.sessionSampleRate = 1.0 // We recommend adjusting this value in production.
+                $0.lifecycle = .trace
+            }
+
+            // Uncomment the following lines to add more data to your events
+            // options.attachScreenshot = true // This adds a screenshot to the error events
+            // options.attachViewHierarchy = true // This adds the view hierarchy to the error events
+            
+            // Enable experimental logging features
+            options.experimental.enableLogs = true
+        }
 
         // Enable verbose logging for debugging (remove in production)
         OneSignal.Debug.setLogLevel(.LL_VERBOSE)

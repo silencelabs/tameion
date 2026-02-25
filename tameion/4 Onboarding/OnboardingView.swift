@@ -8,6 +8,7 @@ import SwiftUI
 import RevenueCat
 import RevenueCatUI
 import FirebaseCrashlytics
+import Sentry
 
 
 struct OnboardingView: View {
@@ -44,13 +45,36 @@ struct OnboardingView: View {
                     .presentPaywallIfNeeded(
                         requiredEntitlementIdentifier: "premium",
                         purchaseCompleted: { customerInfo in
-                            print("Purchase completed: \(customerInfo.entitlements)")
+                            // 1. Log the successful purchase as a breadcrumb
+                            SentrySDK.addBreadcrumb({
+                                let crumb = Breadcrumb(level: .info, category: "revenuecat")
+                                crumb.message = "Purchase completed: premium"
+                                crumb.data = ["entitlements": customerInfo.entitlements.active.keys.joined(separator: ", ")]
+                                return crumb
+                            }())
+
+                            // 2. Update the Sentry user's global status so future crashes show they are 'premium'
+                            SentrySDK.configureScope { scope in
+                                scope.setTag(value: "premium", key: "subscription_status")
+                            }
                         },
                         restoreCompleted: { customerInfo in
-                            // Paywall will be dismissed automatically if the entitlement is now active.
-                            print("Purchase restored: \(customerInfo.entitlements)")
+                            // 3. Log the restore as a breadcrumb
+                            SentrySDK.addBreadcrumb({
+                                let crumb = Breadcrumb(level: .info, category: "revenuecat")
+                                crumb.message = "Purchase restored"
+                                return crumb
+                            }())
                         }
                     )
+                    .onAppear {
+                        // 4. Track that the paywall check was triggered
+                        SentrySDK.addBreadcrumb({
+                            let crumb = Breadcrumb(level: .info, category: "ui.lifecycle")
+                            crumb.message = "Paywall check triggered for 'premium'"
+                            return crumb
+                        }())
+                    }
             }
         }
         .task {

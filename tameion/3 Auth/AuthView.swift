@@ -86,7 +86,7 @@ struct AuthView: View {
                 Text(DSCopy.Error.genericBody)
                     .textStyle(.caption, color: .red, alignment: .center)
             } else {
-                Text(" ") // Invisible placeholder
+                Text(" ")
             }
 
 
@@ -150,12 +150,9 @@ struct AuthView: View {
     func signInWithGoogle() {
         Task {
             if await viewModel.signInWithGoogle() {
-                print("✅ Successfully signed in with Google")
                 if authService.isAuthenticated {
                     appState.advanceToNextPhase()
                 }
-            } else {
-                print("❌ Google sign in failed")
             }
         }
     }
@@ -171,46 +168,3 @@ struct AuthView_Previews: PreviewProvider {
             .environmentObject(AppState())
     }
 }
-
-//                    if let userId = userId {
-//                        VStack {
-//                            Text("Hello \(firstName ?? "") \(lastName ?? "") ! You are already logged in.")
-//                            Text("UserId: \(userId)")
-//                            Button("Sign Out") {
-//                                viewModel.signOut()
-//                            }
-//                        }.padding()
-//                    } else {
-//                        SignInWithAppleButton(.signIn) { request in
-//                            viewModel.handleSignInWithAppleRequest(request)
-//                        } onCompletion: { result in
-//                            viewModel.handleSignInWithAppleCompletion(result)
-//                            appState.advanceToNextPhase()
-//                        }.signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-//                            .coreButtonStyle {
-//                                DSColor.black
-//                            }.buttonTextStyle(.entryBody)
-//                        DSButton(DSCopy.Auth.SignIn.withGoogle, image: DSCopy.Assets.Logos.google, role: .external) {
-//                            Task {
-//                              if await viewModel.signInWithGoogle() == true {
-//                                print("Sucessfull signed in!")
-//                                  appState.advanceToNextPhase()
-//                              } else {
-//                                  print("Sign in failed.")
-//                                  // Show an error alert or message
-//                              }
-//                            }
-//                        }
-//                        .foregroundColor(colorScheme == .dark ? .white : .black)
-//                        DSButton(DSCopy.Auth.SignIn.signInButtonTitle, role: .secondary) {
-//                            // save action
-//                        }.padding(.bottom, DSSpacing.xl)
-//                        
-//                        Text(DSCopy.Auth.promise).textStyle(.caption).padding(.bottom, DSSpacing.xl)
-//                    }
-//                }.padding()
-//            }.padding()
-//        }.padding()
-//        
-//    }
-//}

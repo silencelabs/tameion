@@ -9,6 +9,7 @@ import CryptoKit
 import Combine
 import RevenueCat
 import LocalAuthentication
+import Sentry
 
 
 @MainActor
@@ -18,8 +19,8 @@ final class FirebaseAuthService: ObservableObject {
     static let shared = FirebaseAuthService()
     
     // MARK: - Published State (Read-Only)
-    @Published private(set) var currentUser: User?
-    
+    @Published private(set) var currentUser: FirebaseAuth.User?
+
     // MARK: - Computed Properties for Easy Access
     var isAuthenticated: Bool {
         currentUser != nil
@@ -42,30 +43,23 @@ final class FirebaseAuthService: ObservableObject {
     }
     
     // MARK: - Private Properties
+
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     
     // MARK: - Initialization
+
     private init() {
-        // Single auth state listener for entire app
         authStateHandle = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             guard let self = self else { return }
             
             Task { @MainActor in
                 self.currentUser = user
-                // TODO: ADD USER TO LOCAL SERVICE
-
-#if DEBUG
                 if let user = user {
+                    let sentryUser = Sentry.User()
+                    sentryUser.userId = user.uid
+                    SentrySDK.setUser(sentryUser)
                     PaymentsService.shared.configure(appUserID: user.uid)
-                    print("🔐 Auth State: Signed In")
-                    print("👤 User ID: \(user.uid)")
-                    print("📧 Email: \(user.email ?? "no email")")
-                    print("👨 Display Name: \(user.displayName ?? "no name")")
-                    print("💳 Is An Active Subscriber: \(String(PaymentsService.shared.isPremiumSubscriber))")
-                } else {
-                    print("🔐 Auth State: Signed Out")
                 }
-#endif
             }
         }
     }
@@ -78,6 +72,7 @@ final class FirebaseAuthService: ObservableObject {
 
     
     // MARK: - Public Methods
+
     func unlockWithFaceID(onSuccess: @escaping () -> Void, onFailure: @escaping (String) -> Void) {
         let context = LAContext()
         var error: NSError?
@@ -105,7 +100,6 @@ final class FirebaseAuthService: ObservableObject {
     /// - Throws: Firebase auth errors
     func signUp(email: String, password: String) async throws {
         try await Auth.auth().createUser(withEmail: email, password: password)
-        print("✅ Email sign up successful")
     }
     
     /// Sign in with email and password
@@ -116,7 +110,6 @@ final class FirebaseAuthService: ObservableObject {
     /// - Throws: Firebase auth errors
     func signIn(email: String, password: String) async throws {
         try await Auth.auth().signIn(withEmail: email, password: password)
-        print("✅ Email sign in successful")
     }
     
     /// Sign in with Google credential
@@ -130,10 +123,7 @@ final class FirebaseAuthService: ObservableObject {
             accessToken: accessToken
         )
         
-        let result = try await Auth.auth().signIn(with: credential)
-        print("✅ Google Sign In successful: \(result.user.uid)")
-        print("📧 Email: \(result.user.email ?? "no email")")
-        print("👨 Display Name: \(result.user.displayName ?? "no name")")
+        _ = try await Auth.auth().signIn(with: credential)
     }
     
     /// Sign in with Apple ID credential
@@ -150,8 +140,7 @@ final class FirebaseAuthService: ObservableObject {
         )
         
         let result = try await Auth.auth().signIn(with: firebaseCredential)
-        print("✅ Apple Sign In successful: \(result.user.uid)")
-        
+
         // Update display name if this is a new user
         if let fullName = fullName,
            let givenName = fullName.givenName,
@@ -164,9 +153,8 @@ final class FirebaseAuthService: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
-            print("✅ Successfully signed out")
         } catch {
-            print("❌ Error signing out: \(error.localizedDescription)")
+            SentrySDK.capture(error: error)
         }
     }
     
@@ -178,7 +166,6 @@ final class FirebaseAuthService: ObservableObject {
         }
         
         try await user.delete()
-        print("✅ Account deleted")
     }
     
     
@@ -195,8 +182,6 @@ final class FirebaseAuthService: ObservableObject {
         
         // Refresh current user to trigger @Published update
         self.currentUser = Auth.auth().currentUser
-        
-        print("✅ Display name updated to: \(name)")
     }
     
     /// Update the photo URL for the current user
@@ -212,8 +197,6 @@ final class FirebaseAuthService: ObservableObject {
         
         // Refresh current user to trigger @Published update
         self.currentUser = Auth.auth().currentUser
-        
-        print("✅ Photo URL updated")
     }
     
     // MARK: - Helper Methods for Apple Sign In
@@ -223,6 +206,7 @@ final class FirebaseAuthService: ObservableObject {
         var randomBytes = [UInt8](repeating: 0, count: length)
         let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
         if errorCode != errSecSuccess {
+            SentrySDK.capture(message: "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
             fatalError(
                 "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
             )
@@ -259,7 +243,7 @@ enum AuthServiceError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .noAuthenticatedUser:
-            return "No authenticated user found"
+            return DSCopy.Auth.noAuthUser
         }
     }
 }

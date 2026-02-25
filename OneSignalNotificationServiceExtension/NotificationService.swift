@@ -20,10 +20,6 @@ class NotificationService: UNNotificationServiceExtension {
         self.bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
         if let bestAttemptContent = bestAttemptContent {
-            // DEBUGGING: Uncomment the 2 lines below to check this extension is executing
-//            print("Running NotificationServiceExtension")
-//            bestAttemptContent.body = "[Modified] " + bestAttemptContent.body
-
             OneSignalExtension.didReceiveNotificationExtensionRequest(self.receivedRequest, with: bestAttemptContent, withContentHandler: self.contentHandler)
         }
     }

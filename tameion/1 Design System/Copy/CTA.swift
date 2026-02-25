@@ -11,10 +11,19 @@ enum DSCopy {
         static let continued = "Continue"
         static let save = "Save"
         static let cancel = "Cancel"
+        static let disable = "Disable"
         static let done = "Done"
         static let delete = "Delete"
         static let retry = "Try Again"
-        
+        static let enable = "Enable"
+        static let ok = "OK"
+
+        static func enable(_ item: String) -> String {
+            "Enable \(item)?"
+        }
+        static func disable(_ item: String) -> String {
+            "Disable \(item)?"
+        }
         static func delete(_ item: String) -> String {
             "Delete \(item)"
         }
@@ -63,6 +72,44 @@ extension DSCopy {
         static let promiseAbbreviated = "End-to-end encrypted."
         static let promise2 = "Privacy First."
         static let signout = "Sign Out"
+        static let required = "Authentication Required"
+        static let failed = "Authentication failed"
+        static let noAuthUser = "No authenticated user"
+        static let usePasscode = "Use Passcode"
+        static func notAvailable(_ item: String) -> String {
+            "\(item) not available on this device"
+        }
+
+        static func protectionFailed(_ item: String) -> String {
+            "Authentication failed: \(item)"
+        }
+        static func protectionEnabled(_ item: String) -> String {
+            "Authenticate to enable \(item) protection"
+        }
+        static func protectionRemoved(_ item: String) -> String {
+            "Your journal will no longer be protected by \(item)."
+        }
+        static func protectReminder(_ item: String) -> String {
+            "Protect your journal with \(item)"
+        }
+
+        static let lockJournal = "Unlock your journal"
+        static let lockReminder = "App will lock when you leave"
+        static func unlockReminder(_ item: String) -> String {
+            "You'll need to use \(item) to unlock your journal every time you open the app."
+        }
+
+        enum Apple {
+            static let failedCred = "Failed to get Apple ID credential"
+            static let invalidState = "Invalid State: a login callback was received, but no login request was sent."
+            static let failedToProcess = "Unable to process Apple ID token"
+        }
+
+        enum Google {
+            static let missingConfiguration = "No client ID found in Firebase configuration."
+            static let failedToProcess = "Unable to present Google Sign In"
+            static let missingToken = "ID token missing"
+        }
 
         enum SignIn {
             static let namePlaceholder = "Name"

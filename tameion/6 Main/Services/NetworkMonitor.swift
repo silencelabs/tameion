@@ -30,18 +30,7 @@ final class NetworkMonitor: ObservableObject {
                 self.isConnected = path.status == .satisfied
                 self.connectionType = path.availableInterfaces.first?.type
 
-                print("🔍 Network Monitor Update:")
-                print("  - Previous: \(previousState)")
-                print("  - Current: \(self.isConnected)")
-                print("  - Path status: \(path.status)")
-                print("  - Available interfaces: \(path.availableInterfaces)")
-
-
-                if path.status == .satisfied {
-                    print("🌐 Network: Connected")
-                } else {
-                    print("📵 Network: Disconnected")
-
+                if path.status != .satisfied {
                     try? await Task.sleep(for: .seconds(1))
                 }
             }
@@ -53,8 +42,6 @@ final class NetworkMonitor: ObservableObject {
     func recheckConnection() -> Bool {
         let currentPath = monitor.currentPath
         let isCurrentlyConnected = currentPath.status == .satisfied
-
-        print("🔍 Recheck - Path status: \(currentPath.status), Connected: \(isCurrentlyConnected)")
 
         // Update published property if it changed
         if isConnected != isCurrentlyConnected {

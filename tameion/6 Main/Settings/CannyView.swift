@@ -7,6 +7,7 @@
 import SwiftUI
 import WebKit
 import Foundation
+import Sentry
 
 struct CannySSOService {
     static func fetchSSOToken(
@@ -120,7 +121,7 @@ struct CannyWebViewContainer: UIViewRepresentable {
                 switch result {
                 case .success(let data):
                     guard let token = data["token"] else {
-                        print("❌ No token in response")
+                        SentrySDK.capture(message: "No token in response")
                         self.isLoading = false
                         return
                     }
@@ -139,16 +140,15 @@ struct CannyWebViewContainer: UIViewRepresentable {
                     ]
 
                     guard let url = components.url else {
-                        print("❌ Failed to build Canny URL")
+                        SentrySDK.capture(message: "Failed to build Canny URL")
                         self.isLoading = false
                         return
                     }
 
-                    print("✅ Loading Canny URL: \(url)")
                     webView.load(URLRequest(url: url))
 
                 case .failure(let error):
-                    print("❌ Failed to load Canny SSO:", error)
+                    SentrySDK.capture(error: error)
                     self.isLoading = false
                 }
             }

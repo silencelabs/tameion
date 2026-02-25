@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import SwiftUI
+import Sentry
 
 
 final class EmailService: ObservableObject {
@@ -71,20 +72,16 @@ final class EmailService: ObservableObject {
 
             if let http = response as? HTTPURLResponse,
                !(200...299).contains(http.statusCode) {
-                #if DEBUG
-                print("📧 Resend failed with status:", http.statusCode)
-                #endif
+                SentrySDK.capture(message: "Resend failed with status: \(http.statusCode)")
             }
         } catch {
-            #if DEBUG
-            print("📧 Resend network error:", error)
-            #endif
+            SentrySDK.capture(error: error)
         }
     }
 
     // MARK: - MainActor bridges (Swift 6 safe)
 
-    private func currentUser() async -> User? {
+    private func currentUser() async -> FirebaseAuth.User? {
         await MainActor.run {
             FirebaseAuthService.shared.currentUser
         }

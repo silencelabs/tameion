@@ -27,14 +27,11 @@ struct SignupView: View {
     private func signUpWithEmailPassword() {
         Task {
             if await viewModel.signUpWithEmailPassword() {
-                print("✅ Successfully signed up with Email/Password")
                 dismiss()
                 
                 if authService.isAuthenticated {
                     appState.advanceToNextPhase()
                 }
-            } else {
-                print("❌ Email/Password sign up failed")
             }
         }
     }

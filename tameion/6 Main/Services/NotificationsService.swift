@@ -5,6 +5,7 @@
 //  Created by Shola Ventures on 1/14/26.
 //
 import OneSignalFramework
+import Sentry
 
 final class NotificationsService: NSObject, ObservableObject  {
 
@@ -41,7 +42,6 @@ final class NotificationsService: NSObject, ObservableObject  {
         // Use this method to prompt for push notifications.
         // We recommend removing this method after testing and instead use In-App Messages to prompt for notification permission.
         OneSignal.Notifications.requestPermission({ accepted in
-          print("User accepted notifications: \(accepted)")
         }, fallbackToSettings: false)
     }
 
@@ -88,14 +88,10 @@ final class NotificationsService: NSObject, ObservableObject  {
 
             if let http = response as? HTTPURLResponse,
                !(200...299).contains(http.statusCode) {
-                #if DEBUG
-                print("📧 Resend failed with status:", http.statusCode)
-                #endif
+                SentrySDK.capture(message: "Resend failed with status: \(http.statusCode)")
             }
         } catch {
-            #if DEBUG
-            print("📧 Resend network error:", error)
-            #endif
+            SentrySDK.capture(error: error)
         }
     }
 
